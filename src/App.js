@@ -11,10 +11,15 @@ class App extends Component {
     ]
   }
 
+  switchNameHandler = () => {
+    alert('Button clicked !')
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
+        <button onClick={this.switchNameHandler}>Click Me !</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>I drive Ferrari Enzo.</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
