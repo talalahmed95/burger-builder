@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
         <Person name="Mercedes" age="22"/>
-        <Person name="Paul" age="18"/>
+        <Person name="Paul" age="18">I drive Ferrari Enzo.</Person>
         <Person name="Dave" age="26"/>
       </div>
     );
