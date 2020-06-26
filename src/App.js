@@ -1,44 +1,40 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-const App = props => {
-
-  const [personsState, setPersonsState] = useState({
+class App extends Component {
+  state = {
     persons: [
       { name: 'Mercedes', age: 25 },
       { name: 'Madonna', age: 30 },
       { name: 'Mark', age: 26 }
-    ]
-
-  });
-
-  const [newPersonsState, setNewPersonsState] = useState({newPersons: 'Jorge Push'});
+    ],
+    newPersons: 'Jorge Push'
+  }
   
-  console.log(personsState, newPersonsState)
-
-  const switchNameHandler = (newName) => {
-    setPersonsState({
+  switchNameHandler = (newName) => {
+    console.log(this.state.newPersons)
+    this.setState({
       persons: [
         { name: newName, age: 55 },
         { name: 'Dunkirk', age: 60 },
         { name: 'McGreggor', age: 76 }
-    ]
+      ],
+      newPersons: 'Donald Duck'
     });
-
-    setNewPersonsState({newPersons: 'Donald Duck'});
   }
 
-
-  return (
+  render() {
+    return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
-        <button onClick={() => switchNameHandler('Button Mercedes')}>Click Me !</button>
-        <Person name={personsState.persons[0].name} age={personsState.persons[0].age} click={switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
-        <Person name={personsState.persons[1].name} age={personsState.persons[1].age}>I drive Ferrari Enzo.</Person>
-        <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
+        <button onClick={() => this.switchNameHandler('Button Mercedes')}>Click Me !</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>I drive Ferrari Enzo.</Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
       </div>
-  ); 
+    );
+  } 
 }
 
 export default App;
