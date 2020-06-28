@@ -36,10 +36,17 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
-        <button onClick={() => this.switchNameHandler('Button Mercedes')}>Click Me !</button>
+        <button style={style} onClick={() => this.switchNameHandler('Button Mercedes')}>Click Me !</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
