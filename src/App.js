@@ -17,7 +17,9 @@ class App extends Component {
 
     username: 'Talal Ahmed',
 
-    showPersons: false
+    showPersons: false,
+
+    showAssignment: false
   }
   
   switchNameHandler = (newName) => {
@@ -52,6 +54,11 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+  toggleAssignmentHandler = () => {
+    const doesShowAssignment = this.state.showAssignment;
+    this.setState({showAssignment: !doesShowAssignment});
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -59,7 +66,8 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
-      color: '#000000'
+      color: '#000000',
+      margin: '0 4px'
     }
 
     const style2 = {
@@ -83,15 +91,25 @@ class App extends Component {
       );
     }
 
+    let assignment = null;
+    if (this.state.showAssignment) {
+      assignment = (
+        <div>
+          <br/>
+          <h1 style={style2}>Assignment</h1>
+          <UserInput username={this.state.username} namechange={this.userNameHandler} />
+          <UserOutput username={this.state.username} />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button style={style} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
         {persons}        
-        <br/>
-        <h1 style={style2}>Assignment</h1>
-        <UserInput username={this.state.username} namechange={this.userNameHandler} />
-        <UserOutput username={this.state.username} />
+        {assignment}
       </div>
     );
   } 
