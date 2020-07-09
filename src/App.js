@@ -72,20 +72,22 @@ class App extends Component {
       'background-color': '#ffa8a8',
     }
 
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {
-          this.state.showPersons === true ?
-          <div>
-            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
-            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
-            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-          </div>
-          : null
-        }
-        
+        {persons}        
         <br/>
         <h1 style={style2}>Assignment</h1>
         <UserInput username={this.state.username} namechange={this.userNameHandler} />
