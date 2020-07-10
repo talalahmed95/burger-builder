@@ -9,9 +9,9 @@ import UserOutput from './UserOutput/UserOutput';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Mercedes', age: 25 },
-      { name: 'Madonna', age: 30 },
-      { name: 'Mark', age: 26 }
+      { name: 'Mercedes', age: 25, id: 1 },
+      { name: 'Madonna', age: 30, id: 2 },
+      { name: 'Mark', age: 26, id: 3 }
     ],
     newPersons: 'Jorge Push',
 
@@ -84,9 +84,12 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
+          {this.state.persons.map(person => {
+            return <Person name={person.name} age={person.age} key={person.id} />
+          })}
+          {/*<Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>*/}
         </div>
       );
     }
