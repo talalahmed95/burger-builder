@@ -34,15 +34,21 @@ class App extends Component {
     });
   }
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'Mercedes', age: 25 },
-        { name: event.target.value, age: 30 },
-        { name: 'Mark', age: 26 }
-      ],
-      newPersons: 'Foe Riden'
-    });
+  // nameChangedHandler = (event) => {
+  //   this.setState({
+  //     persons: [
+  //       { name: 'Mercedes', age: 25 },
+  //       { name: event.target.value, age: 30 },
+  //       { name: 'Mark', age: 26 }
+  //     ],
+  //     newPersons: 'Foe Riden'
+  //   });
+  // }
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   }
 
   userNameHandler = (event) => {
@@ -84,8 +90,12 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} key={person.id} />
+          {this.state.persons.map((person, index) => {
+            return <Person 
+              name={person.name}
+              age={person.age}
+              key={person.id}
+              click={() => this.deletePersonHandler(index)} />
           })}
           {/*<Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
