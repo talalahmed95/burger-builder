@@ -22,28 +22,36 @@ class App extends Component {
     showAssignment: false
   }
   
-  switchNameHandler = (newName) => {
-    console.log(this.state.newPersons)
-    this.setState({
-      persons: [
-        { name: newName, age: 55 },
-        { name: 'Dunkirk', age: 60 },
-        { name: 'McGreggor', age: 76 }
-      ],
-      newPersons: 'Donald Duck'
-    });
-  }
-
-  // nameChangedHandler = (event) => {
+  // switchNameHandler = (newName) => {
+  //   console.log(this.state.newPersons)
   //   this.setState({
   //     persons: [
-  //       { name: 'Mercedes', age: 25 },
-  //       { name: event.target.value, age: 30 },
-  //       { name: 'Mark', age: 26 }
+  //       { name: newName, age: 55 },
+  //       { name: 'Dunkirk', age: 60 },
+  //       { name: 'McGreggor', age: 76 }
   //     ],
-  //     newPersons: 'Foe Riden'
+  //     newPersons: 'Donald Duck'
   //   });
   // }
+
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+    const persons = [...this.state.persons]; 
+    persons[personIndex] = person;
+
+    this.setState({
+      persons: persons,
+      newPersons: 'Foe Riden'
+    });
+  }
 
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons; 
@@ -98,7 +106,8 @@ class App extends Component {
               name={person.name}
               age={person.age}
               key={person.id}
-              click={() => this.deletePersonHandler(index)} />
+              click={() => this.deletePersonHandler(index)}
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
           {/*<Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
