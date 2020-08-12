@@ -5,6 +5,9 @@ import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 
+import Validation from './ValidationComponent/ValidationComponent';
+import Char from './CharComponent/CharComponent';
+
 
 class App extends Component {
   state = {
@@ -19,7 +22,11 @@ class App extends Component {
 
     showPersons: false,
 
-    showAssignment: false
+    showAssignment: false,
+
+    showAssignment2: false,
+
+    assignment2Input: ''
   }
   
   // switchNameHandler = (newName) => {
@@ -76,6 +83,22 @@ class App extends Component {
     this.setState({showAssignment: !doesShowAssignment});
   }
 
+  toggleAssignment2Handler = () => {
+    const doesShowAssignment2 = this.state.showAssignment2;
+    this.setState({showAssignment2: !doesShowAssignment2});
+  }
+
+  inputChangedHandler = (event) => {
+    this.setState({assignment2Input: event.target.value});
+  }
+
+  deleteLetterHandler = (letterIndex) => {
+    const text = this.state.assignment2Input.split('');
+    text.splice(letterIndex, 1);
+    const updatedText = text.join('')
+    this.setState({assignment2Input: updatedText});
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -91,10 +114,10 @@ class App extends Component {
       width: '30%',
       margin: '16px auto',
       border: '1px solid #eee',
-      'box-shadow': '0 2px 3px #ccc',
+      boxShadow: '0 2px 3px #ccc',
       padding: '16px',
-      'text-align': 'center',
-      'background-color': '#ffa8a8',
+      textAlign: 'center',
+      backgroundColor: '#ffa8a8',
     }
 
     let persons = null;
@@ -128,13 +151,34 @@ class App extends Component {
       );
     }
 
+    const charList = this.state.assignment2Input.split('').map((letter, index) => {
+      return <Char 
+        inputData={letter} 
+        key={index}
+        click={() => this.deleteLetterHandler(index)} />;
+    });
+
+    let assignment2 = null;
+    if (this.state.showAssignment2) {
+      assignment2 = (
+        <div style={style2}>
+          <input onChange={this.inputChangedHandler} value={this.state.assignment2Input}></input>
+          <p>{this.state.assignment2Input}</p>
+          <Validation inputLength={this.state.assignment2Input.length} />
+          {charList}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
         <button style={style} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
+        <button style={style} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
         {persons}        
         {assignment}
+        {assignment2}
       </div>
     );
   } 
