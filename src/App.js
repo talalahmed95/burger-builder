@@ -110,16 +110,6 @@ class App extends Component {
       margin: '0 4px'
     }
 
-    const style2 = {
-      width: '30%',
-      margin: '16px auto',
-      border: '1px solid #eee',
-      boxShadow: '0 2px 3px #ccc',
-      padding: '16px',
-      textAlign: 'center',
-      backgroundColor: '#ffa8a8',
-    }
-
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -139,7 +129,7 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      
+
     }
 
     let assignment = null;
@@ -147,7 +137,7 @@ class App extends Component {
       assignment = (
         <div>
           <br/>
-          <h1 style={style2}>Assignment</h1>
+          <h1 className="assignStyle">Assignment</h1>
           <UserInput username={this.state.username} namechange={this.userNameHandler} />
           <UserOutput username={this.state.username} />
         </div>
@@ -164,7 +154,7 @@ class App extends Component {
     let assignment2 = null;
     if (this.state.showAssignment2) {
       assignment2 = (
-        <div style={style2}>
+        <div className="assignStyle">
           <input onChange={this.inputChangedHandler} value={this.state.assignment2Input}></input>
           <p>{this.state.assignment2Input}</p>
           <Validation inputLength={this.state.assignment2Input.length} />
@@ -173,12 +163,23 @@ class App extends Component {
       );
     }
 
+    let styleClass = []; // can use '' (string) or [] (array), result is same
+
+    if (this.state.persons.length <= 2) {
+      styleClass = 'red';
+    }
+
+    if (this.state.persons.length <= 1) {
+      styleClass = ['red', 'bold'].join(' ');
+    }
+
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
+        <p className={styleClass}>And... it's working. Try it !</p>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        <button style={style} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
-        <button style={style} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
+        <button className="assignBtnStyle" onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
+        <button className="assignBtnStyle" onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
         {persons}        
         {assignment}
         {assignment2}
