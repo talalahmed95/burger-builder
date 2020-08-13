@@ -163,20 +163,20 @@ class App extends Component {
       );
     }
 
-    let styleClass = []; // can use '' (string) or [] (array), result is same
+    const styleClass = [];
 
     if (this.state.persons.length <= 2) {
-      styleClass = 'red';
+      styleClass.push('red');
     }
 
     if (this.state.persons.length <= 1) {
-      styleClass = ['red', 'bold'].join(' ');
+      styleClass.push('bold');
     }
 
     return (
       <div className="App">
         <h1>Assalam o Alaikum! This is a React App.</h1>
-        <p className={styleClass}>And... it's working. Try it !</p>
+        <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
         <button className="assignBtnStyle" onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
         <button className="assignBtnStyle" onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
