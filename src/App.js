@@ -101,12 +101,12 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
-      color: '#000000',
+      color: '#ffffff',
       margin: '0 4px'
     }
 
@@ -137,6 +137,9 @@ class App extends Component {
           <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>*/}
         </div>
       );
+
+      style.backgroundColor = 'red';
+      
     }
 
     let assignment = null;
