@@ -103,15 +103,10 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      color: '#ffffff',
-      margin: '0 4px'
-    }
+
+    let btnClass = '';
+    let btnClassAssign = '';
+    let btnClassAssign2 = '';
 
     let persons = null;
     if (this.state.showPersons) {
@@ -131,7 +126,7 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
+      btnClass = styles.red;
     }
 
     let assignment = null;
@@ -144,6 +139,8 @@ class App extends Component {
           <UserOutput username={this.state.username} />
         </div>
       );
+
+      btnClassAssign = styles.red;
     }
 
     const charList = this.state.assignment2Input.split('').map((letter, index) => {
@@ -163,6 +160,8 @@ class App extends Component {
           {charList}
         </div>
       );
+
+      btnClassAssign2 = styles.red;
     }
 
     const styleClass = [];
@@ -179,9 +178,9 @@ class App extends Component {
       <div className={styles.App}>
         <h1>Assalam o Alaikum! This is a React App.</h1>
         <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
-        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        <button className={styles.assignBtnStyle} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
-        <button className={styles.assignBtnStyle} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button className={btnClassAssign} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
+        <button className={btnClassAssign2} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
         {persons}        
         {assignment}
         {assignment2}
