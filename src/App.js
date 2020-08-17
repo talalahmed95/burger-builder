@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.css';
 
-import Radium, {StyleRoot} from 'radium';
+// import Radium, {StyleRoot} from 'radium';
 
 import Person from './Person/Person';
 
@@ -110,11 +110,7 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer',
       color: '#ffffff',
-      margin: '0 4px',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      margin: '0 4px'
     }
 
     let persons = null;
@@ -136,11 +132,6 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
-
     }
 
     let assignment = null;
@@ -148,7 +139,7 @@ class App extends Component {
       assignment = (
         <div>
           <br/>
-          <h1 className="assignStyle">Assignment</h1>
+          <h1 className={styles.assignStyle}>Assignment</h1>
           <UserInput username={this.state.username} namechange={this.userNameHandler} />
           <UserOutput username={this.state.username} />
         </div>
@@ -165,7 +156,7 @@ class App extends Component {
     let assignment2 = null;
     if (this.state.showAssignment2) {
       assignment2 = (
-        <div className="assignStyle">
+        <div className={styles.assignStyle}>
           <input onChange={this.inputChangedHandler} value={this.state.assignment2Input}></input>
           <p>{this.state.assignment2Input}</p>
           <Validation inputLength={this.state.assignment2Input.length} />
@@ -177,28 +168,26 @@ class App extends Component {
     const styleClass = [];
 
     if (this.state.persons.length <= 2) {
-      styleClass.push('red');
+      styleClass.push(styles.red);
     }
 
     if (this.state.persons.length <= 1) {
-      styleClass.push('bold');
+      styleClass.push(styles.bold);
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Assalam o Alaikum! This is a React App.</h1>
-          <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
-          <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-          <button className="assignBtnStyle" onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
-          <button className="assignBtnStyle" onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
-          {persons}        
-          {assignment}
-          {assignment2}
-        </div>
-      </StyleRoot>
+      <div className={styles.App}>
+        <h1>Assalam o Alaikum! This is a React App.</h1>
+        <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
+        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button className={styles.assignBtnStyle} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
+        <button className={styles.assignBtnStyle} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
+        {persons}        
+        {assignment}
+        {assignment2}
+      </div>
     );
   } 
 }
 
-export default Radium(App);
+export default App;
