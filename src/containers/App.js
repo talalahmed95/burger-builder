@@ -3,15 +3,15 @@ import styles from './App.module.css';
 
 // import Radium, {StyleRoot} from 'radium';
 
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
+import UserInput from '../components/UserInput/UserInput';
+import UserOutput from '../components/UserOutput/UserOutput';
 
-import Validation from './ValidationComponent/ValidationComponent';
-import Char from './CharComponent/CharComponent';
+import Validation from '../components/ValidationComponent/ValidationComponent';
+import Char from '../components/CharComponent/CharComponent';
 
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
