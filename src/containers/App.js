@@ -3,7 +3,8 @@ import styles from './App.module.css';
 
 // import Radium, {StyleRoot} from 'radium';
 
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 import UserInput from '../components/UserInput/UserInput';
 import UserOutput from '../components/UserOutput/UserOutput';
@@ -11,7 +12,6 @@ import UserOutput from '../components/UserOutput/UserOutput';
 import Validation from '../components/ValidationComponent/ValidationComponent';
 import Char from '../components/CharComponent/CharComponent';
 
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -105,7 +105,6 @@ class App extends Component {
 
   render() {
 
-    let btnClass = '';
     let btnClassAssign = '';
     let btnClassAssign2 = '';
 
@@ -113,22 +112,15 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-              <Person 
-                name={person.name}
-                age={person.age}
-                click={() => this.deletePersonHandler(index)}
-                changed={(event) => this.nameChangedHandler(event, person.id)} />
-            </ErrorBoundary>
-          })}
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            nameChanged={this.nameChangedHandler} />
           {/*<Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
           <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>*/}
         </div>
       );
-
-      btnClass = styles.red;
     }
 
     let assignment = null;
@@ -166,21 +158,11 @@ class App extends Component {
       btnClassAssign2 = styles.red;
     }
 
-    const styleClass = [];
-
-    if (this.state.persons.length <= 2) {
-      styleClass.push(styles.red);
-    }
-
-    if (this.state.persons.length <= 1) {
-      styleClass.push(styles.bold);
-    }
-
     return (
       <div className={styles.App}>
-        <h1>Assalam o Alaikum! This is a React App.</h1>
-        <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <Cockpit showPersons={this.state.showPersons}
+          clicked={this.togglePersonsHandler} 
+          persons={this.state.persons} />
         <button className={btnClassAssign} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
         <button className={btnClassAssign2} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
         {persons}        
