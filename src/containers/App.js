@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styles from './App.module.css';
 
-// import Radium, {StyleRoot} from 'radium';
-
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
@@ -11,6 +9,7 @@ import UserOutput from '../components/UserOutput/UserOutput';
 
 import Validation from '../components/ValidationComponent/ValidationComponent';
 import Char from '../components/CharComponent/CharComponent';
+import CharValidView from '../components/CharValidView/CharValidView';
 
 
 class App extends Component {
@@ -20,7 +19,6 @@ class App extends Component {
       { name: 'Madonna', age: 30, id: 2 },
       { name: 'Mark', age: 26, id: 3 }
     ],
-    newPersons: 'Jorge Push',
 
     username: 'Talal Ahmed',
 
@@ -32,18 +30,6 @@ class App extends Component {
 
     assignment2Input: ''
   }
-  
-  // switchNameHandler = (newName) => {
-  //   console.log(this.state.newPersons)
-  //   this.setState({
-  //     persons: [
-  //       { name: newName, age: 55 },
-  //       { name: 'Dunkirk', age: 60 },
-  //       { name: 'McGreggor', age: 76 }
-  //     ],
-  //     newPersons: 'Donald Duck'
-  //   });
-  // }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -105,9 +91,6 @@ class App extends Component {
 
   render() {
 
-    let btnClassAssign = '';
-    let btnClassAssign2 = '';
-
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -116,9 +99,6 @@ class App extends Component {
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
             nameChanged={this.nameChangedHandler} />
-          {/*<Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler.bind(this, 'Paragraph Mercedes')}/>
-          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.nameChangedHandler}>I drive Ferrari Enzo.</Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>*/}
         </div>
       );
     }
@@ -133,38 +113,36 @@ class App extends Component {
           <UserOutput username={this.state.username} />
         </div>
       );
-
-      btnClassAssign = styles.red;
     }
 
-    const charList = this.state.assignment2Input.split('').map((letter, index) => {
-      return <Char 
-        inputData={letter} 
-        key={index}
-        click={() => this.deleteLetterHandler(index)} />;
-    });
+    // const charList = this.state.assignment2Input.split('').map((letter, index) => {
+    //   return <Char 
+    //     inputData={letter} 
+    //     key={index}
+    //     click={() => this.deleteLetterHandler(index)} />;
+    // });
 
     let assignment2 = null;
     if (this.state.showAssignment2) {
       assignment2 = (
         <div className={styles.assignStyle}>
-          <input onChange={this.inputChangedHandler} value={this.state.assignment2Input}></input>
-          <p>{this.state.assignment2Input}</p>
-          <Validation inputLength={this.state.assignment2Input.length} />
-          {charList}
+          <CharValidView input={this.state.assignment2Input}
+            clicked={this.deleteLetterHandler}
+            changed={this.inputChangedHandler}
+            a2Input={this.state.assignment2Input} />
         </div>
       );
-
-      btnClassAssign2 = styles.red;
     }
 
     return (
       <div className={styles.App}>
         <Cockpit showPersons={this.state.showPersons}
           clicked={this.togglePersonsHandler} 
-          persons={this.state.persons} />
-        <button className={btnClassAssign} onClick={this.toggleAssignmentHandler}>Toggle Assignment</button>
-        <button className={btnClassAssign2} onClick={this.toggleAssignment2Handler}>Toggle Assignment 2</button>
+          persons={this.state.persons}
+          showA1={this.state.showAssignment}
+          showA2={this.state.showAssignment2}
+          a1Clicked={this.toggleAssignmentHandler}
+          a2Clicked={this.toggleAssignment2Handler} />
         {persons}        
         {assignment}
         {assignment2}
