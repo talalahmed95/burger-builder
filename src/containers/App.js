@@ -7,8 +7,6 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import UserInput from '../components/UserInput/UserInput';
 import UserOutput from '../components/UserOutput/UserOutput';
 
-import Validation from '../components/ValidationComponent/ValidationComponent';
-import Char from '../components/CharComponent/CharComponent';
 import CharValidView from '../components/CharValidView/CharValidView';
 
 
@@ -136,7 +134,8 @@ class App extends Component {
 
     return (
       <div className={styles.App}>
-        <Cockpit showPersons={this.state.showPersons}
+        <Cockpit title={this.props.appTitle}
+          showPersons={this.state.showPersons}
           clicked={this.togglePersonsHandler} 
           persons={this.state.persons}
           showA1={this.state.showAssignment}

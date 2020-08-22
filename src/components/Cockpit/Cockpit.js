@@ -31,7 +31,7 @@ const cockpit = (props) => {
 
     return (
     	<div className={styles.Cockpit}>
-			<h1>Assalam o Alaikum! This is a React App.</h1>
+			<h1>Assalam o Alaikum! Welcome to {props.title}</h1>
 		    <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
 		    <button className={btnClass} onClick={props.clicked}>Toggle Persons</button>
 		    <button className={btnClassAssign} onClick={props.a1Clicked}>Toggle Username</button>
