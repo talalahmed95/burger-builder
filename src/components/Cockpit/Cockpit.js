@@ -5,7 +5,11 @@ const Cockpit = (props) => {
 
 	useEffect(() => {
 		console.log('[Cockpit.js] useEffect');
-	});
+
+		setTimeout(() => {
+			console.log('*** Saved data to mock server');
+		}, 1000);
+	}, [props.persons]);
 	
 	const styleClass = [];
 
