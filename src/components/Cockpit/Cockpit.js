@@ -9,7 +9,19 @@ const Cockpit = (props) => {
 		setTimeout(() => {
 			console.log('*** Saved data to mock server');
 		}, 1000);
-	}, [props.persons]);
+
+		return () => {
+			console.log('[Cockpit.js] cleanup using useEffect');
+		};
+
+	}, 	[]);
+
+	useEffect(() => {
+		console.log('[Cockpit.js] 2nd useEffect');
+		return () => {
+			console.log('[Cockpit.js] cleanup using 2nd useEffect');
+		};
+	});
 	
 	const styleClass = [];
 

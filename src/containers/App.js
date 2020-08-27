@@ -24,14 +24,11 @@ class App extends Component {
     ],
 
     username: 'Talal Ahmed',
-
     showPersons: false,
-
     showAssignment: false,
-
     showAssignment2: false,
-
-    assignment2Input: ''
+    assignment2Input: '',
+    showCockpit: true
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -159,14 +156,17 @@ class App extends Component {
 
     return (
       <div className={styles.App}>
-        <Cockpit title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          clicked={this.togglePersonsHandler} 
-          persons={this.state.persons}
-          showA1={this.state.showAssignment}
-          showA2={this.state.showAssignment2}
-          a1Clicked={this.toggleAssignmentHandler}
-          a2Clicked={this.toggleAssignment2Handler} />
+        <button onClick={() => this.setState({showCockpit: false})}> Remove Cockpit</button>
+        {this.state.showCockpit ? (
+          <Cockpit title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            clicked={this.togglePersonsHandler} 
+            persons={this.state.persons}
+            showA1={this.state.showAssignment}
+            showA2={this.state.showAssignment2}
+            a1Clicked={this.toggleAssignmentHandler}
+            a2Clicked={this.toggleAssignment2Handler} />
+        ) : null}
         {persons}        
         {assignment}
         {assignment2}
