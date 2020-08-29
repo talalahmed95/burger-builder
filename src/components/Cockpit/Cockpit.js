@@ -6,11 +6,12 @@ const Cockpit = (props) => {
 	useEffect(() => {
 		console.log('[Cockpit.js] useEffect');
 
-		setTimeout(() => {
-			console.log('*** Saved data to mock server');
-		}, 1000);
+		const timer = setTimeout(() => {
+			alert('*** Saved data to mock server');
+		}, 2000);
 
 		return () => {
+			clearTimeout(timer);
 			console.log('[Cockpit.js] cleanup using useEffect');
 		};
 
