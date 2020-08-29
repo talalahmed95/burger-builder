@@ -15,7 +15,7 @@ const Cockpit = (props) => {
 			console.log('[Cockpit.js] cleanup using useEffect');
 		};
 
-	}, 	[]);
+	}, []);
 
 	useEffect(() => {
 		console.log('[Cockpit.js] 2nd useEffect');
