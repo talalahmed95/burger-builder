@@ -7,8 +7,8 @@ const Cockpit = (props) => {
 		console.log('[Cockpit.js] useEffect');
 
 		const timer = setTimeout(() => {
-			alert('*** Saved data to mock server');
-		}, 2000);
+			console.log('*** Saved data to mock server');
+		}, 1000);
 
 		return () => {
 			clearTimeout(timer);
@@ -26,11 +26,11 @@ const Cockpit = (props) => {
 	
 	const styleClass = [];
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
       styleClass.push(styles.red);
     }
 
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
       styleClass.push(styles.bold);
     }
 
@@ -61,4 +61,4 @@ const Cockpit = (props) => {
 	);
 }
 
-export default Cockpit;
+export default React.memo(Cockpit);
