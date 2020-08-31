@@ -9,7 +9,10 @@ import UserOutput from '../components/UserOutput/UserOutput';
 
 import CharValidView from '../components/CharValidView/CharValidView';
 
-import WithClass from '../hoc/WithClass';
+import Aux from '../hoc/Auxiliary';
+
+//start with small letter as this is just a normal JS function not a component
+import withClass from '../hoc/withClass';
 
 
 class App extends Component {
@@ -157,7 +160,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={styles.App}>
+      <Aux>
         <button onClick={() => this.setState({showCockpit: false})}> Remove Cockpit</button>
         {this.state.showCockpit ? (
           <Cockpit title={this.props.appTitle}
@@ -172,9 +175,9 @@ class App extends Component {
         {persons}        
         {assignment}
         {assignment2}
-      </WithClass>
+      </Aux>
     );
   } 
 }
 
-export default App;
+export default withClass(App, styles.App);
