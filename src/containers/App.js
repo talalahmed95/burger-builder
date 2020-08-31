@@ -9,6 +9,8 @@ import UserOutput from '../components/UserOutput/UserOutput';
 
 import CharValidView from '../components/CharValidView/CharValidView';
 
+import WithClass from '../hoc/WithClass';
+
 
 class App extends Component {
   constructor(props) {
@@ -155,7 +157,7 @@ class App extends Component {
     }
 
     return (
-      <div className={styles.App}>
+      <WithClass classes={styles.App}>
         <button onClick={() => this.setState({showCockpit: false})}> Remove Cockpit</button>
         {this.state.showCockpit ? (
           <Cockpit title={this.props.appTitle}
@@ -170,7 +172,7 @@ class App extends Component {
         {persons}        
         {assignment}
         {assignment2}
-      </div>
+      </WithClass>
     );
   } 
 }
