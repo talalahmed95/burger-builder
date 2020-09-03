@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './Cockpit.module.css';
 
 const Cockpit = (props) => {
+	const focusRef = useRef(null); // also working without null
 
 	useEffect(() => {
 		console.log('[Cockpit.js] useEffect');
 
-		const timer = setTimeout(() => {
-			console.log('*** Saved data to mock server');
-		}, 1000);
+		// const timer = setTimeout(() => {
+		// 	console.log('*** Saved data to mock server');
+		// }, 1000);
 
-		return () => {
-			clearTimeout(timer);
-			console.log('[Cockpit.js] cleanup using useEffect');
-		};
+		// return () => {
+		// 	clearTimeout(timer);
+		// 	console.log('[Cockpit.js] cleanup using useEffect');
+		// };
+
+		focusRef.current.click();
 
 	}, []);
 
@@ -54,7 +57,7 @@ const Cockpit = (props) => {
     	<div className={styles.Cockpit}>
 			<h1>Assalam o Alaikum! Welcome to {props.title}</h1>
 		    <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
-		    <button className={btnClass} onClick={props.clicked}>Toggle Persons</button>
+		    <button ref={focusRef} className={btnClass} onClick={props.clicked}>Toggle Persons</button>
 		    <button className={btnClassAssign} onClick={props.a1Clicked}>Toggle Username</button>
         	<button className={btnClassAssign2} onClick={props.a2Clicked}>Toggle TextToLetter</button>
 		</div>
