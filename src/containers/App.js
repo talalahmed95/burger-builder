@@ -34,7 +34,8 @@ class App extends Component {
     showAssignment2: false,
     assignment2Input: '',
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -116,6 +117,10 @@ class App extends Component {
     this.setState({assignment2Input: updatedText});
   }
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  }
+
   render() {
 
     console.log('[App.js] render');
@@ -127,7 +132,9 @@ class App extends Component {
           <Persons 
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            nameChanged={this.nameChangedHandler} />
+            nameChanged={this.nameChangedHandler}
+            isAuthenticated={this.state.authenticated}
+          />
         </div>
       );
     }
@@ -174,7 +181,9 @@ class App extends Component {
             showA1={this.state.showAssignment}
             showA2={this.state.showAssignment2}
             a1Clicked={this.toggleAssignmentHandler}
-            a2Clicked={this.toggleAssignment2Handler} />
+            a2Clicked={this.toggleAssignment2Handler}
+            login={this.loginHandler}
+          />
         ) : null}
         {persons}        
         {assignment}

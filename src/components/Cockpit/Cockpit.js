@@ -57,9 +57,10 @@ const Cockpit = (props) => {
     	<div className={styles.Cockpit}>
 			<h1>Assalam o Alaikum! Welcome to {props.title}</h1>
 		    <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
+		    <button className={styles.loginBtn} onClick={props.login}>Log In</button> <br />
 		    <button ref={focusRef} className={btnClass} onClick={props.clicked}>Toggle Persons</button>
 		    <button className={btnClassAssign} onClick={props.a1Clicked}>Toggle Username</button>
-        	<button className={btnClassAssign2} onClick={props.a2Clicked}>Toggle TextToLetter</button>
+        	<button className={btnClassAssign2} onClick={props.a2Clicked}>Toggle TextToLetter</button>        	
 		</div>
 	);
 }
