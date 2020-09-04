@@ -14,6 +14,8 @@ import Aux from '../hoc/Auxiliary';
 //start with small letter as this is just a normal JS function not a component
 import withClass from '../hoc/withClass';
 
+import AuthContext from '../context/auth-context';
+
 
 class App extends Component {
   constructor(props) {
@@ -173,6 +175,7 @@ class App extends Component {
     return (
       <Aux>
         <button onClick={() => this.setState({showCockpit: false})}> Remove Cockpit</button>
+        <AuthContext.Provider value={{authenticated: this.state.authenticated, login: this.loginHandler}}>
         {this.state.showCockpit ? (
           <Cockpit title={this.props.appTitle}
             showPersons={this.state.showPersons}
@@ -182,10 +185,10 @@ class App extends Component {
             showA2={this.state.showAssignment2}
             a1Clicked={this.toggleAssignmentHandler}
             a2Clicked={this.toggleAssignment2Handler}
-            login={this.loginHandler}
           />
-        ) : null}
-        {persons}        
+        ) : null} 
+        {persons}
+        </AuthContext.Provider>        
         {assignment}
         {assignment2}
       </Aux>

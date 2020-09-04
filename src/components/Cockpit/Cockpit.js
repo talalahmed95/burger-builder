@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './Cockpit.module.css';
+import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
 	const focusRef = useRef(null); // also working without null
@@ -57,7 +58,10 @@ const Cockpit = (props) => {
     	<div className={styles.Cockpit}>
 			<h1>Assalam o Alaikum! Welcome to {props.title}</h1>
 		    <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
-		    <button className={styles.loginBtn} onClick={props.login}>Log In</button> <br />
+		    <AuthContext.Consumer>
+		    	{(context) => <button className={styles.loginBtn} onClick={context.login}>Log In</button>}
+		    </AuthContext.Consumer>
+		    <br />
 		    <button ref={focusRef} className={btnClass} onClick={props.clicked}>Toggle Persons</button>
 		    <button className={btnClassAssign} onClick={props.a1Clicked}>Toggle Username</button>
         	<button className={btnClassAssign2} onClick={props.a2Clicked}>Toggle TextToLetter</button>        	
