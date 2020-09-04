@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import styles from './Cockpit.module.css';
-import AuthContext from '../../context/auth-context';
+import authContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
 	const focusRef = useRef(null); // also working without null
+	const auth = useContext(authContext);
+
+	console.log("Cockpit Auth:", auth.authenticated);
 
 	useEffect(() => {
 		console.log('[Cockpit.js] useEffect');
@@ -58,9 +61,7 @@ const Cockpit = (props) => {
     	<div className={styles.Cockpit}>
 			<h1>Assalam o Alaikum! Welcome to {props.title}</h1>
 		    <p className={styleClass.join(' ')}>And... it's working. Try it !</p>
-		    <AuthContext.Consumer>
-		    	{(context) => <button className={styles.loginBtn} onClick={context.login}>Log In</button>}
-		    </AuthContext.Consumer>
+		    <button className={styles.loginBtn} onClick={auth.login}>Log In</button>
 		    <br />
 		    <button ref={focusRef} className={btnClass} onClick={props.clicked}>Toggle Persons</button>
 		    <button className={btnClassAssign} onClick={props.a1Clicked}>Toggle Username</button>
